@@ -15,7 +15,7 @@ public class Hazard : MonoBehaviour
     {
         if (other.CompareTag("Player")) // Check if the player collides with the hazard
         {
-            // Call UIManager directly to handle damage
+            // Call UIManager directly to minus health
             if (UIManager.Instance != null)
             {
                 UIManager.Instance.TakeDamage(damage);

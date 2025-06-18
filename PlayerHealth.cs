@@ -1,7 +1,7 @@
 /*
 * Author: Janelle Ng
 * Date: 15-06-2025
-*Description: Manages player health, damage handling, and respawn functionality with position reset
+* Description: Handles player health and damage response with audio feedback.
 */
 
 using UnityEngine;
@@ -9,8 +9,8 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Audio")]
-    [SerializeField] private AudioClip damageSound; //Plays audio when player takes damage
-    private AudioSource audioSource;
+    [SerializeField] private AudioClip damageSound;
+    private AudioSource audioSource; //plays hurt sound
 
     private void Start()
     {
@@ -19,14 +19,11 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        UIManager.Instance?.TakeDamage(damage);
-        
-        if (damageSound != null && audioSource != null)
-        {
+        UIManager.Instance?.TakeDamage(damage); //minus health in UIManager
+
+        if (damageSound && audioSource)
             audioSource.PlayOneShot(damageSound);
-        }
-        
-        
+
         Debug.Log($"Player took {damage} damage!");
     }
 }

@@ -11,19 +11,12 @@ public class CoinBehaviour : MonoBehaviour
 {
     public int points = 5;
 
-private void OnTriggerEnter(Collider other)
-{
-    if (other.CompareTag("Player")) //Only respond to player 
+    private void OnTriggerEnter(Collider other)
     {
-        if (UIManager.Instance != null)
+        if (other.CompareTag("Player")) // Only respond to player 
         {
             UIManager.Instance.AddPoints(points);
+            Destroy(gameObject);
         }
-        else
-        {
-            Debug.LogWarning("UIManager.Instance is null!"); //check if UIManager is initialized
-        }
-        Destroy(gameObject);
     }
 }
-}   
